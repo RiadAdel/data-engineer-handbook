@@ -1,11 +1,11 @@
 INSERT INTO actors 
 WITH yesterday AS(
 	SELECT * FROM actors
-	WHERE current_year = 1999
+	WHERE current_year = 2003
 ), today AS (
 SELECT *
 FROM actor_films a
-WHERE YEAR = 2000
+WHERE YEAR = 2004
 )
 SELECT COALESCE(t.actorid, y.actorid) AS actorid, COALESCE(t.actor, y.actor) AS actor, CASE WHEN max(y.films) IS NULL THEN 
 array_agg( ROW(t.filmid , t.film , t.votes , t.rating )::film)
